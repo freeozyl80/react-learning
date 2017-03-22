@@ -2,11 +2,17 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Router, Route, Link, hashHistory, IndexRoute, browserHistory} from 'react-router'
 
+
+import Lists from './components/list.jsx';   // 主页
+import AppendA from './components/appendixA.jsx';   // 主页
+import AppendB from './components/appendixB.jsx';   // 主页
+import WithLink from './components/twoWay.jsx';   // 主页
+
 const App = React.createClass({
 	render() {
 		return (
 			<div>
-				<div>APP</div>
+				<div>APP!@!</div>
 				<li><Link to="/users">Users</Link></li>
           		<li><Link to="/persons">Persons</Link></li>
 				{this.props.children}
@@ -88,6 +94,14 @@ var RForm = React.createClass({
   	)
   }
 });
+function FancyCheckbox(props) {
+  var fancyClass = props.checked ? 'FancyChecked' : 'FancyUnchecked';
+  return (
+    <div className={fancyClass} onClick={props.onClick}>
+      {props.children}
+    </div>
+  );
+}
 ReactDOM.render((
 	<div>
 	<RForm/>
@@ -100,6 +114,17 @@ ReactDOM.render((
 		</Route>
 	</Router>
 	<div>-----------------华丽的分割线------------------------</div>
+	<Lists>
+		<span>hello</span>
+    	<span>world</span>
+    </Lists>
+    <AppendA></AppendA>
+    <FancyCheckbox checked={true} onClick={console.log.bind(console)}>
+      Hello world!
+    </FancyCheckbox>
+    <div>-----------------看看有什么高级用法喽------------------------</div>
+    <AppendB></AppendB>
+    <WithLink></WithLink>
 	</div>),
 	document.getElementById('container')
 );
